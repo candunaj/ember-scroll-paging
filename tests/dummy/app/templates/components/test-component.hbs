@@ -1,6 +1,7 @@
-<button {{action 'refresh'}}>Refresh</button>
+<button {{action (mut needRefresh) true}}>Refresh</button>
 {{#scroll-paging 
     needRefresh=needRefresh
+    refreshCompleted=(action (mut needRefresh) false)
     itemHeight=30 
     pageSize=20
     onRequestPage=(action 'loadPage')

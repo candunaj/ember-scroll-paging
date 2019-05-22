@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import EmberObject, { observer } from '@ember/object';
 import layout from '../templates/components/scroll-paging';
 import { A } from '@ember/array';
+import { next } from '@ember/runloop';
 
 export default Component.extend({
     layout,
@@ -21,7 +22,9 @@ export default Component.extend({
                 itemsCount: 1
             }));
             this.set('pages', pages);
-            this.set('needRefresh', false);
+            next(()=>{
+                this.refreshCompleted();
+            });
         }
     }),
 
