@@ -19,7 +19,7 @@ export default Component.extend({
             let pages = this.get('pages');
             if(pages.length){
                 pages.forEach(p=>{
-                    p.set('items', null);
+                    p.set('needRefresh', true);
                 });
             }else{
                 let pages = A();
@@ -56,7 +56,10 @@ export default Component.extend({
                     this.addOrRemovePages(pagesCount);
                     this.correctItemsCount();
                     this.setItems(pageIndex, items);
+                    this.get('pages')[pageIndex].set('loading', false);
                 }
+            }).finally(()=>{
+                this.get('pages')[pageIndex].set('loading', false);
             });
         },
     },

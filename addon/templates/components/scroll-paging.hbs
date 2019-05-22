@@ -6,5 +6,9 @@
         as |data|
     }}
         {{yield data}}
+    {{else}}
+        {{yield to='inverse'}}
     {{/scroll-paging/page}}
+{{else}}
+        No Data
 {{/each}}

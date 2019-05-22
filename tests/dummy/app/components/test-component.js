@@ -13,12 +13,14 @@ export default Component.extend({
         },
 
         loadPage(pageIndex, pageSize){
+            console.log('load page: '+pageIndex);
+            let requestTime = new Date().getTime();
             let loadPromise = new Promise(resolve=>{
                     let result = [];
                     let count = (pageIndex===10 ? 3 : pageSize);
                     for(let i=0;i<count; i++){
                         result.push(EmberObject.create({
-                            name: 'testName ' + (i+(pageIndex*pageSize))
+                            name: 'testName '+ requestTime + ' ' + (i+(pageIndex*pageSize))
                         }));
                     }
 

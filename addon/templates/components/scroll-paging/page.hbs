@@ -1,16 +1,20 @@
-<div class='scroll-paging-page' style={{html-safe height}}
+<div class='scroll-paging-page' style={{html-safe heightStyle}}
     {{check-viewport 
-        onEnterViewport=(action (mut visible) true)
+        onEnterViewport=(action 'enterViewport')
         onExitViewport=(action (mut visible) false)
         enabled=true
+    }}
+    {{check-size
+        enabled=visible
+        onHeightChanged=(action 'setHeight')
     }}
     >
     {{#if visible}}
         {{#each items as |item|}}
             {{yield item}}
         {{else}}
-            {{#each loadingItems as |li index|}}
-                {{yield (hash pageIndex=pageIndex index=index isLoadingItem=true)}}
+            {{#each loadingItems as |li|}}
+                {{yield to='inverse'}}
             {{/each}}
         {{/each}}
     {{/if}}

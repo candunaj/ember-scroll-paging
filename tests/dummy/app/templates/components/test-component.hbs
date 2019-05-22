@@ -6,11 +6,11 @@
     pageSize=20
     onRequestPage=(action 'loadPage')
     as |item|}}
-    <div style="height:30px;">
-        {{#if item.isLoadingItem}}
-            Loading...
-        {{else}}
-            {{item.name}}
-        {{/if}}
+    <div style='height:50px;'>
+        {{item.name}}
+    </div>
+{{else}}
+    <div style='height:60px;'>
+        Loading...
     </div>
 {{/scroll-paging}}
