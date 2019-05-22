@@ -16,12 +16,19 @@ export default Component.extend({
 
     onRefresh: observer('needRefresh', function(){
         if(this.get('needRefresh') === true){
-            let pages = A();
-            pages.pushObject(EmberObject.create({
-                pageIndex: 0,
-                itemsCount: 1
-            }));
-            this.set('pages', pages);
+            let pages = this.get('pages');
+            if(pages.length){
+                pages.forEach(p=>{
+                    p.set('items', null);
+                });
+            }else{
+                let pages = A();
+                pages.pushObject(EmberObject.create({
+                    pageIndex: 0,
+                    itemsCount: 1
+                }));
+                this.set('pages', pages);
+            }
             next(()=>{
                 this.refreshCompleted();
             });
