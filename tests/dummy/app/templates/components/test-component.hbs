@@ -1,0 +1,15 @@
+<button {{action 'refresh'}}>Refresh</button>
+{{#scroll-paging 
+    needRefresh=needRefresh
+    itemHeight=30 
+    pageSize=20
+    onRequestPage=(action 'loadPage')
+    as |item|}}
+    <div style="height:30px;">
+        {{#if item.isLoadingItem}}
+            Loading...
+        {{else}}
+            {{item.name}}
+        {{/if}}
+    </div>
+{{/scroll-paging}}

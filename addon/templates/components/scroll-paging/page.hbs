@@ -1,0 +1,17 @@
+<div class='scroll-paging-page' style={{html-safe height}}
+    {{check-viewport 
+        onEnterViewport=(action (mut visible) true)
+        onExitViewport=(action (mut visible) false)
+        enabled=true
+    }}
+    >
+    {{#if visible}}
+        {{#each items as |item|}}
+            {{yield item}}
+        {{else}}
+            {{#each loadingItems as |li index|}}
+                {{yield (hash pageIndex=pageIndex index=index isLoadingItem=true)}}
+            {{/each}}
+        {{/each}}
+    {{/if}}
+</div>

@@ -1,0 +1,10 @@
+{{#each pages as |page|}}
+    {{#scroll-paging/page 
+        itemHeight=itemHeight 
+        requestPage=(action 'requestPageInternal')
+        page=page
+        as |data|
+    }}
+        {{yield data}}
+    {{/scroll-paging/page}}
+{{/each}}

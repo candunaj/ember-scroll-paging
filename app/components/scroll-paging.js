@@ -1,0 +1,1 @@
+export { default } from 'ember-scroll-paging/components/scroll-paging';
